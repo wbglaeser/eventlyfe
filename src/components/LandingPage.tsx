@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "3vh"
   },
   welcomeBoxStart: {
-    backgroundColor: "#1d57a5",
     minHeight: "50vh",
     width: "100%",
     display: "flex",
@@ -44,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "28px",
     fontFamily: "Arial Black",
     color: "black",
+  },
+  eventlyHeadline: {
+    width: "100%",
+    borderBottom: "1px solid black"
   }
 }));
 
@@ -53,7 +56,7 @@ export default function LandingPage() {
   return (
     <Grid container className={classes.welcomeBox}>
 
-      <div>
+      <div className={classes.eventlyHeadline}>
         <div className={classes.welcomeTextEvent}>Event</div>
         <div className={classes.welcomeTextLy}>Ly</div>
       </div>

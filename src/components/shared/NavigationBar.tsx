@@ -6,20 +6,22 @@ import { Link } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    backgroundColor: "#1d57a5",
-    maxHeight: '20vh',
+    backgroundColor: "white",
+    borderBottom: "1px solid black"
   },
   toolbar: {
+    display: "flex",
     flexWrap: 'wrap',
-  },
-  logo: {
-    width: 'auto',
-    height: '18vh',
+    flexDirection: "row",
+    justifyContent: "center",
+    minHeight: "0vh"
   },
   text: {
-    color: "white",
-    paddingRight: "2vw",
-    fontFamily: "Arial"
+    color: "black",
+    paddingRight: "3vw",
+    paddingLeft: "3vw",
+    fontFamily: "Arial Black",
+    fontSize: "48px"
   },
   linkStyle: {
     textDecoration: 'none'

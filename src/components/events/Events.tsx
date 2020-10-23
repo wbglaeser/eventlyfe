@@ -8,13 +8,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: 'column',
     alignItems: "flex-start",
-    minHeight: "100vh",
+    height: "50vh",
     marginTop: "3vh"
   },
   welcomeBoxStart: {
-    backgroundColor: "#1d57a5",
     height: "100%",
-    minHeight: "50vh",
     width: "100%",
     display: "flex",
     flexDirection: "row",
@@ -25,6 +23,14 @@ const useStyles = makeStyles((theme) => ({
   },
   linkStyle: {
     textDecoration: 'none'
+  },
+  startButton: {
+    backgroundColor: "white",
+    padding: "2vh",
+    margin: "10vh",
+    fontSize: "28px",
+    fontFamily: "Arial Black",
+    color: "black",
   }
 }));
 
@@ -36,10 +42,15 @@ export default function Events() {
 
     <div className={classes.welcomeBoxStart}>
 
-      <div className={classes.welcomeBoxInfoText}>
-            Setup Your Event
-      </div>
+    <div className={classes.welcomeBoxInfoText}>
 
+      <Link to={"/event/" + "name" }className={classes.linkStyle}>
+        <div className={classes.startButton}>
+          Enter your Event Details
+        </div>
+      </Link>
+
+    </div>
     </div>
     </Grid>
   );

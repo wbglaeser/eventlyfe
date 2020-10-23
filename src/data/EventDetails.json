@@ -1,0 +1,20 @@
+[
+  {
+    "identifier": "name",
+    "question": "Enter the name of your Event",
+    "placeholder": "Fette Party",
+    "nextStep": "date"
+  },
+  {
+    "identifier": "date",
+    "question": "Enter the data of your event",
+    "placeholder": "31.01.2020",
+    "nextStep": "location"
+  },
+  {
+    "identifier": "location",
+    "question": "Enter the location of your Event",
+    "placeholder": "Rostock",
+    "nextStep": null
+  }
+]
