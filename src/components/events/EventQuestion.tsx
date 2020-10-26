@@ -1,10 +1,8 @@
-import React, {useCallback} from 'react';
-import Grid from '@material-ui/core/Grid';
+import React, { useCallback, useState, useEffect } from 'react'
+import Grid from '@material-ui/core/Grid'
 import { Link, useParams, useHistory } from "react-router-dom"
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-var path = require('path');
-import { retrieveEventDetailById } from "data/Interface"
+import { makeStyles } from '@material-ui/core/styles'
+import EventForm from 'components/events/EventForm'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: "center",
     height: "50vh",
-    marginTop: "3vh"
+    marginTop: "10vh"
   },
   welcomeBoxStart: {
     height: "100%",
@@ -42,56 +40,16 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Arial Black",
     color: "black",
   }
-
 }));
 
-const onSubmit = (): void => {
-  console.log("hi there")
-}
-
 export default function EventQuestion() {
-  console.log("here we are")
   const classes = useStyles();
   let { step }: any = useParams()
-  let stepDetails = retrieveEventDetailById(step)
 
-  const history = useHistory();
-  const handleOnClick = useCallback(() => history.push(stepDetails.nextStep), [history]);
-
-  console.log("step", stepDetails)
   return (
     <Grid container className={classes.welcomeBox}>
-
       <div className={classes.welcomeBoxStart}>
-
-          <div className={classes.welcomeBoxInfoText}>
-                {stepDetails.question}
-          </div>
-
-          <form
-            className={classes.root}
-            noValidate
-            autoComplete="off"
-            onSubmit={handleOnClick}
-          >
-            <TextField
-              id="standard-full-width"
-              style={{ margin: 8 }}
-              placeholder={stepDetails.placeholder}
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </form>
-
-          <Link to={"/event/" + stepDetails.nextStep }className={classes.linkStyle}>
-            <div className={classes.startButton}>
-              Enter your Event Details
-            </div>
-          </Link>
-
+        <EventForm step={step}/>
       </div>
     </Grid>
   );
