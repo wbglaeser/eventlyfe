@@ -52,7 +52,7 @@ export default function EventQuestion() {
       <div className={classes.welcomeBoxStart}>
 
       {
-        (step !== "null")?
+        (step !== "overview")?
         <EventForm step={step}/>:
         <EventOverview />
       }

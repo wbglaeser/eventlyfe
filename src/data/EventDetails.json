@@ -15,6 +15,6 @@
     "identifier": "location",
     "question": "Enter the location of your Event",
     "placeholder": "Rostock",
-    "nextStep": null
+    "nextStep": "overview"
   }
 ]
