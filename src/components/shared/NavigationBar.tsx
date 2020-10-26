@@ -38,8 +38,14 @@ export default function NavigationBar() {
         <Link to="/" className={classes.linkStyle}>
           <h3 className={classes.text}>Home</h3>
         </Link>
-        <h3 className={classes.text}>About us</h3>
-        <h3 className={classes.text}>Contact</h3>
+
+        <Link to="/about" className={classes.linkStyle}>
+          <h3 className={classes.text}>About us</h3>
+        </Link>
+
+        <Link to="/contact" className={classes.linkStyle}>
+          <h3 className={classes.text}>Contact</h3>
+        </Link>
 
       </Toolbar>
     </AppBar>

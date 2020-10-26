@@ -5,7 +5,9 @@ import {
   Route,
   Switch
 } from "react-router-dom"
-import LandingPage from "components/LandingPage"
+import LandingPage from "components/main/LandingPage"
+import About from "components/main/About"
+import Contact from "components/main/Contact"
 import Events from "components/events/Events"
 import EventStateInit from "components/events/EventStateInit"
 import NavigationBar from "components/shared/NavigationBar"
@@ -62,6 +64,18 @@ const App = () => {
         <Route exact path="/event">
           <div className={classes.mainArea}>
             <Events />
+          </div>
+        </Route>
+
+        <Route exact path="/about">
+          <div className={classes.mainArea}>
+            <About />
+          </div>
+        </Route>
+
+        <Route exact path="/contact">
+          <div className={classes.mainArea}>
+            <Contact />
           </div>
         </Route>
 
