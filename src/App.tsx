@@ -7,7 +7,7 @@ import {
 } from "react-router-dom"
 import LandingPage from "components/LandingPage"
 import Events from "components/events/Events"
-import EventQuestion from "components/events/EventQuestion"
+import EventStateInit from "components/events/EventStateInit"
 import NavigationBar from "components/shared/NavigationBar"
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -46,32 +46,32 @@ const App = () => {
     <div className={classes.root}>
 
       <Router>
+
       <div className={classes.navBar}>
-      <NavigationBar/>
+        <NavigationBar/>
       </div>
 
-        <Switch>
+      <Switch>
 
-          <Route exact path="/">
-            <div className={classes.mainArea}>
-              <LandingPage />
-            </div>
-          </Route>
+        <Route exact path="/">
+          <div className={classes.mainArea}>
+            <LandingPage />
+          </div>
+        </Route>
 
-          <Route exact path="/event">
-            <div className={classes.mainArea}>
-              <Events />
-            </div>
-          </Route>
+        <Route exact path="/event">
+          <div className={classes.mainArea}>
+            <Events />
+          </div>
+        </Route>
 
-          <Route path="/event/:step">
-            <div className={classes.mainArea}>
-              <EventQuestion />
-            </div>
-          </Route>
+        <Route path="/event/:step">
+          <div className={classes.mainArea}>
+            <EventStateInit />
+          </div>
+        </Route>
 
-
-        </Switch>
+      </Switch>
 
       </Router>
     </div>
