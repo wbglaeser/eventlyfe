@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import { Link, useParams, useHistory } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles'
 import EventForm from 'components/events/EventForm'
+import EventOverview from 'components/events/EventOverview'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +50,13 @@ export default function EventQuestion() {
   return (
     <Grid container className={classes.welcomeBox}>
       <div className={classes.welcomeBoxStart}>
-        <EventForm step={step}/>
+
+      {
+        (step !== "null")?
+        <EventForm step={step}/>:
+        <EventOverview />
+      }
+
       </div>
     </Grid>
   );
