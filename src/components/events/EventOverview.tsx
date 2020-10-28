@@ -35,13 +35,13 @@ const sendRequest = () => {
       location: 'yourOtherValue',
     })
   })
+  .then(response => response.json())
+  .then(data => console.log(data));
 }
 
 export default function EventOverview() {
   const classes = useStyles();
   let eventDetails = EventDetails.useContainer();
-
-  console.log(Object.entries(eventDetails.self))
 
   return (
     <>
