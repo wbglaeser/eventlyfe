@@ -23,6 +23,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const sendRequest = () => {
+  fetch('http://localhost:8001/events', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+    body: JSON.stringify({
+      name: 'yourValue',
+      date: 'yourOtherValue',
+      location: 'yourOtherValue',
+    })
+  })
+}
+
 export default function EventOverview() {
   const classes = useStyles();
   let eventDetails = EventDetails.useContainer();
@@ -44,7 +58,7 @@ export default function EventOverview() {
         to={"/event/create"}
         className={classes.linkStyle}
       >
-        <div className={classes.startButton}>
+        <div className={classes.startButton} onClick={sendRequest}>
           Create Event
         </div>
       </Link>

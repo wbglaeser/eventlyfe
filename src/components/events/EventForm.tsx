@@ -38,8 +38,6 @@ export default function EventForm(props: EventFormProps) {
   const stepDetails = retrieveEventDetailById(props.step)
   let eventDetails = EventDetails.useContainer();
 
-  console.log(eventDetails.self)
-
   const updateTextInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     setTextInput(event.currentTarget.value)
   }
