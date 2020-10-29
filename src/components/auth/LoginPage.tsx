@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import { LoginDataLayout } from "customTypes"
 
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
@@ -39,8 +41,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+let initialLoginState: LoginDataLayout = {};
+
 export default function Events() {
+  const [loginData, setLoginData] = useState(initialLoginState)
   const classes = useStyles();
+
+  const updateLoginData = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    let _loginData = {...loginData}
+    _loginData[event.currentTarget.name] = event.currentTarget.value
+    setLoginData(_loginData)
+    console.log(_loginData)
+  }
 
   return (
     <Grid container className={classes.welcomeBox}>
@@ -50,12 +62,37 @@ export default function Events() {
     <div className={classes.welcomeBoxInfoText}>
 
       <div className={classes.eventExplanation}>
-        This is what you can do. Ladidada
+        Enter your login data
       </div>
 
-      <Link to={"/event/" + "name" }className={classes.linkStyle}>
+      <TextField
+        key={1}
+        id="standard-full-width"
+        style={{ margin: 8 }}
+        placeholder={"Username"}
+        fullWidth
+        margin="normal"
+        name="username"
+        onChange={updateLoginData}
+      />
+
+      <TextField
+        key={2}
+        id="standard-full-width"
+        style={{ margin: 8 }}
+        placeholder={"Password"}
+        fullWidth
+        name="password"
+        margin="normal"
+        onChange={updateLoginData}
+      />
+
+      <Link
+        to={ "/event" }
+        className={classes.linkStyle}
+      >
         <div className={classes.startButton}>
-          Enter your Event Details
+          Login
         </div>
       </Link>
 

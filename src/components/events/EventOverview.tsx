@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { EventDetailsLayout } from "customTypes"
 
 import { EventDetails } from "states/eventDetails"
+import { Authentification } from "states/authentification"
 
 const useStyles = makeStyles((theme) => ({
   welcomeBoxInfoText: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EventOverview() {
   const classes = useStyles();
   let eventDetails = EventDetails.useContainer();
+  let authentification = Authentification.useContainer();
 
   return (
     <>
@@ -39,14 +41,31 @@ export default function EventOverview() {
         })}
       </div>
 
-      <Link
-        to={"/confirmation"}
-        className={classes.linkStyle}
-      >
-        <div className={classes.startButton} >
-          Create Event
-        </div>
-      </Link>
+      {
+        authentification.logged_in()?
+        <Link
+          to={"/confirmation"}
+          className={classes.linkStyle}
+        >
+          <div className={classes.startButton} >
+            Create Event
+          </div>
+        </Link>
+        :
+        <>
+          <p>To create the event you need to sign in first</p>
+          <Link
+            to={"/login"}
+            className={classes.linkStyle}
+            >
+            <div className={classes.startButton} >
+              Login
+              </div>
+          </Link>
+        </>
+      }
+
+
 
     </>
   );
