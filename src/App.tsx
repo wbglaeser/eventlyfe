@@ -5,11 +5,7 @@ import {
   Route,
   Switch
 } from "react-router-dom"
-import LandingPage from "components/main/LandingPage"
-import About from "components/main/About"
-import Contact from "components/main/Contact"
-import Events from "components/events/Events"
-import EventStateInit from "components/events/EventStateInit"
+import Routes from "routing/Routes"
 import NavigationBar from "components/shared/NavigationBar"
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -49,43 +45,11 @@ const App = () => {
 
       <Router>
 
-      <div className={classes.navBar}>
-        <NavigationBar/>
-      </div>
+        <div className={classes.navBar}>
+          <NavigationBar/>
+        </div>
 
-      <Switch>
-
-        <Route exact path="/">
-          <div className={classes.mainArea}>
-            <LandingPage />
-          </div>
-        </Route>
-
-        <Route exact path="/event">
-          <div className={classes.mainArea}>
-            <Events />
-          </div>
-        </Route>
-
-        <Route exact path="/about">
-          <div className={classes.mainArea}>
-            <About />
-          </div>
-        </Route>
-
-        <Route exact path="/contact">
-          <div className={classes.mainArea}>
-            <Contact />
-          </div>
-        </Route>
-
-        <Route path="/event/:step">
-          <div className={classes.mainArea}>
-            <EventStateInit />
-          </div>
-        </Route>
-
-      </Switch>
+        <Routes />
 
       </Router>
     </div>

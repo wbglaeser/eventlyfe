@@ -1,3 +1,3 @@
-export type EvenetDetailsLayout = {
+export type EventDetailsLayout = {
   [key: string]: string;
 }

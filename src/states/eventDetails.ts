@@ -1,9 +1,9 @@
 import { createContainer } from 'unstated-next'
 import { useState } from 'react'
-import { EvenetDetailsLayout } from "customTypes"
+import { EventDetailsLayout } from "customTypes"
 
 
-export function useEventDetails(initialState: EvenetDetailsLayout = {"hi":"there"}) {
+export function useEventDetails(initialState: EventDetailsLayout = {}) {
   let [self, setEventDetails] = useState(initialState)
 
   const addDetail = (step: string, label: string) => {

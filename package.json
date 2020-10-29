@@ -38,6 +38,8 @@
   },
   "alias": {
     "components": "./src/components",
-    "data": "./src/data"
+    "data": "./src/data",
+    "routing": "./src/routing",
+    "states": "./src/states"
   }
 }

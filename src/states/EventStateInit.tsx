@@ -1,6 +1,5 @@
 import React from 'react';
-import EventQuestion from "components/events/EventQuestion"
-
+import StatedRoutes from "routing/StatedRoutes"
 import { EventDetails } from "states/eventDetails"
 
 export default function EventStateInit() {
@@ -8,7 +7,7 @@ export default function EventStateInit() {
   return (
     <EventDetails.Provider>
 
-      <EventQuestion />
+      <StatedRoutes />
 
     </EventDetails.Provider>
   );

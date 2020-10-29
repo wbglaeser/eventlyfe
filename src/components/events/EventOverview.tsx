@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom"
+import { EventDetailsLayout } from "customTypes"
 
 import { EventDetails } from "states/eventDetails"
 
@@ -23,22 +24,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const sendRequest = () => {
-  fetch('http://localhost:8001/events', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'text/plain',
-    },
-    body: JSON.stringify({
-      name: 'yourValue',
-      date: 'yourOtherValue',
-      location: 'yourOtherValue',
-    })
-  })
-  .then(response => response.json())
-  .then(data => console.log(data));
-}
-
 export default function EventOverview() {
   const classes = useStyles();
   let eventDetails = EventDetails.useContainer();
@@ -46,19 +31,19 @@ export default function EventOverview() {
   return (
     <>
       <div className={classes.welcomeBoxInfoText}>
-            Your Event Details:
-            {Object.entries(eventDetails.self).map((label, index) => {
-              return(
-                <div key={index}>this:{label[0]}:{label[1]}</div>
-              )
-            })}
+        Your Event Details:
+        {Object.entries(eventDetails.self).map((label, index) => {
+          return(
+            <div key={index}>this:{label[0]}:{label[1]}</div>
+          )
+        })}
       </div>
 
       <Link
-        to={"/event/create"}
+        to={"/confirmation"}
         className={classes.linkStyle}
       >
-        <div className={classes.startButton} onClick={sendRequest}>
+        <div className={classes.startButton} >
           Create Event
         </div>
       </Link>
