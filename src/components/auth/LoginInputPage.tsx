@@ -41,18 +41,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-let initialLoginState: LoginDataLayout = {};
+type LoginResultProps = {
+  updateLoginData: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  updateLoginState: () => void;
+}
 
-export default function Events() {
-  const [loginData, setLoginData] = useState(initialLoginState)
+export default function LoginPage(props: LoginResultProps) {
   const classes = useStyles();
-
-  const updateLoginData = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
-    let _loginData = {...loginData}
-    _loginData[event.currentTarget.name] = event.currentTarget.value
-    setLoginData(_loginData)
-    console.log(_loginData)
-  }
 
   return (
     <Grid container className={classes.welcomeBox}>
@@ -73,7 +68,7 @@ export default function Events() {
         fullWidth
         margin="normal"
         name="username"
-        onChange={updateLoginData}
+        onChange={props.updateLoginData}
       />
 
       <TextField
@@ -84,17 +79,13 @@ export default function Events() {
         fullWidth
         name="password"
         margin="normal"
-        onChange={updateLoginData}
+        onChange={props.updateLoginData}
       />
 
-      <Link
-        to={ "/event" }
-        className={classes.linkStyle}
-      >
-        <div className={classes.startButton}>
-          Login
-        </div>
-      </Link>
+      <div className={classes.startButton}
+      onClick={() => { props.updateLoginState()} }>
+        Login
+      </div>
 
     </div>
     </div>
