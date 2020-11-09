@@ -67,7 +67,7 @@ export default function LoginPage(props: LoginResultProps) {
         placeholder={"Username"}
         fullWidth
         margin="normal"
-        name="username"
+        name="name"
         onChange={props.updateLoginData}
       />
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,40 +41,28 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const sendAsyncReq = (loginData: LoginDataLayout) =>{
-  return new Promise((resolve, reject) =>{
-    fetch('http://localhost:8001/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-      body: JSON.stringify(loginData)
-    }).then(
-      (response) => {
-        response.json()
-          .then((res) => {
-            if (response.status === 201) { resolve(true) }
-            else { resolve(false) }
-          })
-      })
-      .catch((err) => {
-        // reject(err)
-      });
-  })
-}
-
-const sendRequest = async (loginData: LoginDataLayout) => {
-  const result = await sendAsyncReq(loginData)
-}
-
 type LoginResultProps = {
   loginData: LoginDataLayout
 }
 
 export default function LoginResultPage(props: LoginResultProps) {
   const classes = useStyles();
-  let loginResult = sendRequest(props.loginData)
-  let result = sendRequest(props.loginData)
+  const [loginResult, setLoginResult] = useState(false)
+
+  const validateUser = async (loginData: LoginDataLayout) =>{
+    const res = await fetch('http://localhost:8001/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify(loginData)
+    }).then(response => response.json())
+    .then(response => setLoginResult(response))
+  }
+
+  useEffect(() => {
+      validateUser(props.loginData)
+  })
 
   return (
     <Grid container className={classes.welcomeBox}>
