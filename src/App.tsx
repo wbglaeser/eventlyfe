@@ -5,7 +5,7 @@ import {
   Route,
   Switch
 } from "react-router-dom"
-import Routes from "routing/Routes"
+import Routes from "routing/StatedRoutes"
 import NavigationBar from "components/shared/NavigationBar"
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -18,20 +18,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     paddingBottom: "5vh"
   },
-  mainArea: {
-    minHeight: "100vh",
-    display: 'flex',
-    flexDirection: "row",
-    justifyContent: "center",
-    width: "65vw",
-    margin: theme.spacing(0),
-    padding: theme.spacing(0),
-  },
   navBar: {
     display: 'flex',
     flexDirection: "row",
     justifyContent: "center",
-    width: "65vw",
+    width: "100vw",
     margin: theme.spacing(0),
     padding: theme.spacing(0),
   }
@@ -44,13 +35,10 @@ const App = () => {
     <div className={classes.root}>
 
       <Router>
-
         <div className={classes.navBar}>
           <NavigationBar/>
         </div>
-
         <Routes />
-
       </Router>
     </div>
   );

@@ -7,21 +7,21 @@ import { Link } from "react-router-dom"
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: "white",
-    borderBottom: "1px solid black"
-  },
-  toolbar: {
     display: "flex",
-    flexWrap: 'wrap',
     flexDirection: "row",
-    justifyContent: "center",
-    minHeight: "0vh"
+    justifyContent: "space-between"
+  },
+  infoSection: {
+    display: "flex",
+    flexDirection: "row",
   },
   text: {
     color: "black",
     paddingRight: "3vw",
     paddingLeft: "3vw",
-    fontFamily: "Arial Black",
-    fontSize: "48px"
+    fontFamily: "Arial",
+    fontSize: "24px",
+    lineHeight: "0px"
   },
   linkStyle: {
     textDecoration: 'none'
@@ -33,12 +33,12 @@ export default function NavigationBar() {
 
   return (
     <AppBar position="static" elevation={0} className={classes.appBar}>
-      <Toolbar className={classes.toolbar}>
 
-        <Link to="/" className={classes.linkStyle}>
-          <h3 className={classes.text}>Home</h3>
-        </Link>
+      <Link to="/" className={classes.linkStyle}>
+        <h3 className={classes.text}>Evently</h3>
+      </Link>
 
+      <div className={classes.infoSection}>
         <Link to="/about" className={classes.linkStyle}>
           <h3 className={classes.text}>About us</h3>
         </Link>
@@ -47,7 +47,11 @@ export default function NavigationBar() {
           <h3 className={classes.text}>Contact</h3>
         </Link>
 
-      </Toolbar>
+        <Link to="/login" className={classes.linkStyle}>
+          <h3 className={classes.text}>Login</h3>
+        </Link>
+      </div>
+
     </AppBar>
   );
 }

@@ -8,45 +8,27 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: 'column',
     alignItems: "flex-start",
-    height: "100%"
+    height: "100%",
+    width: "100%",
+    padding: "100px"
   },
-  welcomeTextEvent: {
-    fontSize: '150px',
-    fontFamily: "Arial Black",
-    color: "black",
-    lineHeight: "155px"
-  },
-  welcomeTextLy: {
-    fontSize: '150px',
-    fontFamily: "Arial Black",
-    color: "purple",
-    lineHeight: "155px",
-    marginBottom: "3vh"
-  },
-  welcomeBoxStart: {
-    minHeight: "50vh",
+  iconArray: {
     width: "100%",
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    paddingBottom: "25px",
   },
-  welcomeBoxInfoText: {
-    color: "white",
-  },
-  linkStyle: {
-    textDecoration: 'none'
-  },
-  startButton: {
-    backgroundColor: "white",
-    padding: "2vh",
-    margin: "10vh",
-    fontSize: "28px",
-    fontFamily: "Arial Black",
-    color: "black",
-  },
-  eventlyHeadline: {
+  infoContainer: {
+    display: "flex",
+    flexDirection: 'row',
+    justifyContent: "space-between",
     width: "100%",
-    borderBottom: "1px solid black"
+    minHeight: "30vh",
+    marginTop: "7vh",
+    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+  },
+  infoEvently: {
   }
 }));
 
@@ -56,21 +38,27 @@ export default function LandingPage() {
   return (
     <Grid container className={classes.welcomeBox}>
 
-      <div className={classes.eventlyHeadline}>
-        <div className={classes.welcomeTextEvent}>Evently</div>
-      </div>
-
-      <div className={classes.welcomeBoxStart}>
-
-        <div className={classes.welcomeBoxInfoText}>
-          <Link to="/event" className={classes.linkStyle}>
-            <div className={classes.startButton}>
-              Setup Your Event
-            </div>
-          </Link>
+      <div className={classes.iconArray}>
+        <div>
+           <img src={"../../src/images/megaphon.png"} alt="Girl in a jacket" width="250" height="250"/>
         </div>
-
+        <div>
+           <img src={"../../src/images/augenmaske.png"} alt="Girl in a jacket" width="250" height="250"/>
+        </div>
+        <div>
+           <img src={"../../src/images/feuerwerk.png"} alt="Girl in a jacket" width="250" height="250"/>
+        </div>
       </div>
+
+      <div className={classes.infoContainer}>
+        <div className={classes.infoEvently}>
+          Evently allows you to create your own event with worrying about the nitty gritty
+        </div>
+        <div>
+          Create your own button
+        </div>
+      </div>
+
     </Grid>
   );
 }

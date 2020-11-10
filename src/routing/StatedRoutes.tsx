@@ -9,71 +9,41 @@ import EventConfirmation from "components/events/EventConfirmation"
 import EventQuestion from "components/events/EventQuestion"
 import Login from "components/auth/Login"
 import Register from "components/auth/Register"
-import { makeStyles } from '@material-ui/core/styles'
-
-const useStyles = makeStyles((theme) => ({
-  mainArea: {
-    minHeight: "100vh",
-    display: 'flex',
-    flexDirection: "row",
-    justifyContent: "center",
-    width: "65vw",
-    margin: theme.spacing(0),
-    padding: theme.spacing(0),
-  },
-}));
 
 const StatedRoutes = () => {
-  const classes = useStyles();
 
   return (
     <>
         <Route exact path="/">
-          <div className={classes.mainArea}>
             <LandingPage />
-          </div>
         </Route>
 
         <Route exact path="/about">
-          <div className={classes.mainArea}>
             <About />
-          </div>
         </Route>
 
         <Route exact path="/contact">
-          <div className={classes.mainArea}>
             <Contact />
-          </div>
         </Route>
 
         <Route exact path="/event">
-          <div className={classes.mainArea}>
             <Events />
-          </div>
         </Route>
 
         <Route exact path="/login">
-          <div className={classes.mainArea}>
             <Login />
-          </div>
         </Route>
 
         <Route exact path="/register">
-          <div className={classes.mainArea}>
             <Register />
-          </div>
         </Route>
 
         <Route exact path="/confirmation">
-          <div className={classes.mainArea}>
             <EventConfirmation />
-          </div>
         </Route>
 
         <Route path="/event/:step">
-          <div className={classes.mainArea}>
             <EventQuestion />
-          </div>
         </Route>
 
     </>
