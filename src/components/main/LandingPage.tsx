@@ -57,8 +57,7 @@ export default function LandingPage() {
     <Grid container className={classes.welcomeBox}>
 
       <div className={classes.eventlyHeadline}>
-        <div className={classes.welcomeTextEvent}>Event</div>
-        <div className={classes.welcomeTextLy}>Ly</div>
+        <div className={classes.welcomeTextEvent}>Evently</div>
       </div>
 
       <div className={classes.welcomeBoxStart}>

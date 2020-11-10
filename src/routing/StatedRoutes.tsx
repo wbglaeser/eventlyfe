@@ -8,6 +8,7 @@ import Events from "components/events/Events"
 import EventConfirmation from "components/events/EventConfirmation"
 import EventQuestion from "components/events/EventQuestion"
 import Login from "components/auth/Login"
+import Register from "components/auth/Register"
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -54,6 +55,12 @@ const StatedRoutes = () => {
         <Route exact path="/login">
           <div className={classes.mainArea}>
             <Login />
+          </div>
+        </Route>
+
+        <Route exact path="/register">
+          <div className={classes.mainArea}>
+            <Register />
           </div>
         </Route>
 

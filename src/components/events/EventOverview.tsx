@@ -29,7 +29,7 @@ export default function EventOverview() {
   const classes = useStyles();
   let eventDetails = EventDetails.useContainer();
   let authentification = Authentification.useContainer();
-
+  console.log(eventDetails.self)
   return (
     <>
       <div className={classes.welcomeBoxInfoText}>
@@ -60,6 +60,15 @@ export default function EventOverview() {
             >
             <div className={classes.startButton} >
               Login
+              </div>
+          </Link>
+          <p>Don't have an account yet?</p>
+          <Link
+            to={"/register"}
+            className={classes.linkStyle}
+            >
+            <div className={classes.startButton} >
+              Register
               </div>
           </Link>
         </>
