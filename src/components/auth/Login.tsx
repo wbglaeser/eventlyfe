@@ -12,13 +12,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: 'row',
     justifyContent: "center",
-    height: "100%",
+    minHeight: "100%",
     width: "100%",
     padding: "100px"
   },
   eventBoxContainer: {
     width: "40vw",
-    height: "30vh",
+    minHeight: "30vh",
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     borderRadius: "5px",
     display: "flex",

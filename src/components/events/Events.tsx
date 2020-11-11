@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "50px"
   },
   eventText:{
-    fontSize: '28px',
+    fontSize: '22px',
     fontFamily: "Arial",
     marginBottom: "50px"
   },

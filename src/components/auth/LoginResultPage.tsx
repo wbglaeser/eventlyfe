@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { LoginDataLayout } from "customTypes"
+import { Redirect } from 'react-router-dom';
+import { Authentification } from "states/authentification"
 
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
@@ -48,6 +50,8 @@ type LoginResultProps = {
 export default function LoginResultPage(props: LoginResultProps) {
   const classes = useStyles();
   const [loginResult, setLoginResult] = useState(false)
+  let authentification = Authentification.useContainer();
+
 
   const validateUser = async (loginData: LoginDataLayout) =>{
     const res = await fetch('http://localhost:8001/users/validate', {
@@ -57,7 +61,10 @@ export default function LoginResultPage(props: LoginResultProps) {
         },
         body: JSON.stringify(loginData)
     }).then(response => response.json())
-    .then(response => setLoginResult(response))
+    .then(response => {
+      setLoginResult(response)
+      authentification.login()
+    })
   }
 
   useEffect(() => {
@@ -69,16 +76,13 @@ export default function LoginResultPage(props: LoginResultProps) {
 
       <div className={classes.welcomeBoxStart}>
         <div className={classes.welcomeBoxInfoText}>
-          {
-            loginResult ?
-              <div className={classes.eventExplanation}>
-                You have been logged in successfully
-              </div>
-              :
-              <div className={classes.eventExplanation}>
-                Your login was not successful.
-              </div>
-          }
+        {
+          loginResult?
+          <Redirect to={"/event/overview"}/>:
+          <div className={classes.eventExplanation}>
+            Your login was not successful.
+          </div>
+        }
 
         </div>
       </div>

@@ -89,7 +89,7 @@ export default function EventOverview() {
           Your Event Details:
           {Object.entries(eventDetails.self).map((label, index) => {
             return(
-              <div key={index}>this:{label[0]}:{label[1]}</div>
+              <div key={index}>{label[0]}: {label[1]}</div>
             )
           })}
         </div>
