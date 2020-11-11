@@ -5,7 +5,7 @@ import {
   Route,
   Switch
 } from "react-router-dom"
-import Routes from "routing/StatedRoutes"
+import Routes from "routing/Routes"
 import NavigationBar from "components/shared/NavigationBar"
 import { makeStyles } from '@material-ui/core/styles'
 

@@ -6,38 +6,21 @@ import TextField from '@material-ui/core/TextField';
 import { RegisterDataLayout } from "customTypes"
 
 const useStyles = makeStyles((theme) => ({
-  welcomeBox: {
-    display: "flex",
-    flexDirection: 'column',
-    alignItems: "flex-start",
-    height: "50vh",
-    marginTop: "3vh"
-  },
-  welcomeBoxStart: {
-    height: "100%",
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  welcomeBoxInfoText: {
-    color: "white",
-  },
-  linkStyle: {
-    textDecoration: 'none'
+  eventTitle:{
+    fontSize: '28px',
+    fontFamily: "Arial",
+    marginBottom: "25px"
   },
   startButton: {
-    backgroundColor: "white",
-    padding: "2vh",
-    margin: "10vh",
-    fontSize: "28px",
-    fontFamily: "Arial Black",
-    color: "black",
-  },
-  eventExplanation: {
-    fontSize: "22px",
-    fontFamily: "Arial Black",
-    color: "black",
+    minHeight: "3vh",
+    backgroundColor: "#4aa0ec",
+    fontSize: '22px',
+    fontFamily: "Arial",
+    color: "white",
+    textDecoration: 'none',
+    padding: "10px",
+    marginRight: "30px",
+    borderRadius: "5px",
   }
 }));
 
@@ -50,13 +33,8 @@ export default function RegisterInputPage(props: RegisterResultProps) {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.welcomeBox}>
-
-    <div className={classes.welcomeBoxStart}>
-
-    <div className={classes.welcomeBoxInfoText}>
-
-      <div className={classes.eventExplanation}>
+    <>
+      <div className={classes.eventTitle}>
         Enter your register data
       </div>
 
@@ -86,9 +64,6 @@ export default function RegisterInputPage(props: RegisterResultProps) {
       onClick={() => { props.updateRegisterState()} }>
         Register
       </div>
-
-    </div>
-    </div>
-    </Grid>
+    </>
   );
 }

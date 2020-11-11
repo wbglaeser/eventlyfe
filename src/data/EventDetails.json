@@ -7,7 +7,7 @@
   },
   {
     "identifier": "date",
-    "question": "Enter the data of your event",
+    "question": "Enter the date of your event",
     "placeholder": "31.01.2020",
     "nextStep": "location"
   },

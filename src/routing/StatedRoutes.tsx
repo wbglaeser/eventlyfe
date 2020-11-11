@@ -14,18 +14,6 @@ const StatedRoutes = () => {
 
   return (
     <>
-        <Route exact path="/">
-            <LandingPage />
-        </Route>
-
-        <Route exact path="/about">
-            <About />
-        </Route>
-
-        <Route exact path="/contact">
-            <Contact />
-        </Route>
-
         <Route exact path="/event">
             <Events />
         </Route>

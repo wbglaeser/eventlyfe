@@ -6,36 +6,43 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
     display: "flex",
-    flexDirection: 'column',
-    alignItems: "flex-start",
-    height: "50vh",
-    marginTop: "3vh"
-  },
-  welcomeBoxStart: {
+    flexDirection: 'row',
+    justifyContent: "center",
     height: "100%",
     width: "100%",
+    padding: "100px"
+  },
+  eventBoxContainer: {
+    width: "40vw",
+    minHeight: "30",
+    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    borderRadius: "5px",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
   },
-  welcomeBoxInfoText: {
-    color: "white",
+  eventContent:{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    padding: "50px"
   },
-  linkStyle: {
-    textDecoration: 'none'
+  eventText:{
+    fontSize: '28px',
+    fontFamily: "Arial",
+    marginBottom: "50px"
   },
   startButton: {
-    backgroundColor: "white",
-    padding: "2vh",
-    margin: "10vh",
-    fontSize: "28px",
-    fontFamily: "Arial Black",
-    color: "black",
-  },
-  eventExplanation: {
-    fontSize: "22px",
-    fontFamily: "Arial Black",
-    color: "black",
+    width: "20vw",
+    minHeight: "5vh",
+    backgroundColor: "#4aa0ec",
+    fontSize: '28px',
+    fontFamily: "Arial",
+    color: "white",
+    textDecoration: 'none',
+    padding: "15px",
+    marginRight: "30px",
+    borderRadius: "5px",
   }
 }));
 
@@ -45,22 +52,20 @@ export default function Events() {
   return (
     <Grid container className={classes.welcomeBox}>
 
-    <div className={classes.welcomeBoxStart}>
+      <div className={classes.eventBoxContainer}>
+        <div className={classes.eventContent}>
 
-    <div className={classes.welcomeBoxInfoText}>
+        <div className={classes.eventText}>
+          Over the next few steps you can setup your own event by answering a few
+          simple questions
+        </div>
 
-      <div className={classes.eventExplanation}>
-        This is what you can do. Ladidada
+        <Link to={"/event/" + "name" }className={classes.startButton}>
+            Enter your Event Details
+        </Link>
+        </div>
       </div>
 
-      <Link to={"/event/" + "name" }className={classes.linkStyle}>
-        <div className={classes.startButton}>
-          Enter your Event Details
-        </div>
-      </Link>
-
-    </div>
-    </div>
     </Grid>
   );
 }

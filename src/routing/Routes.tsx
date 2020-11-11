@@ -30,21 +30,15 @@ const Routes = () => {
     <Switch>
 
       <Route exact path="/">
-        <div className={classes.mainArea}>
           <LandingPage />
-        </div>
       </Route>
 
       <Route exact path="/about">
-        <div className={classes.mainArea}>
           <About />
-        </div>
       </Route>
 
       <Route exact path="/contact">
-        <div className={classes.mainArea}>
           <Contact />
-        </div>
       </Route>
 
       <EventStateInit />

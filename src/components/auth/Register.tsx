@@ -10,37 +10,27 @@ import { RegisterDataLayout } from "customTypes"
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
     display: "flex",
-    flexDirection: 'column',
-    alignItems: "flex-start",
-    height: "50vh",
-    marginTop: "3vh"
-  },
-  welcomeBoxStart: {
+    flexDirection: 'row',
+    justifyContent: "center",
     height: "100%",
     width: "100%",
+    padding: "100px"
+  },
+  eventBoxContainer: {
+    width: "40vw",
+    height: "30vh",
+    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    borderRadius: "5px",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
   },
-  welcomeBoxInfoText: {
-    color: "white",
+  eventContent:{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    padding: "50px"
   },
-  linkStyle: {
-    textDecoration: 'none'
-  },
-  startButton: {
-    backgroundColor: "white",
-    padding: "2vh",
-    margin: "10vh",
-    fontSize: "28px",
-    fontFamily: "Arial Black",
-    color: "black",
-  },
-  eventExplanation: {
-    fontSize: "22px",
-    fontFamily: "Arial Black",
-    color: "black",
-  }
 }));
 
 let initialRegisterData: RegisterDataLayout = {};
@@ -64,18 +54,19 @@ export default function Register() {
   return (
     <Grid container className={classes.welcomeBox}>
 
-    <div className={classes.welcomeBoxStart}>
+      <div className={classes.eventBoxContainer}>
+        <div className={classes.eventContent}>
 
-    <div className={classes.welcomeBoxInfoText}>
+          {
+            registerState === "input" ?
+            <RegisterInputPage updateRegisterData={updateRegisterData} updateRegisterState={updateRegisterState} /> :
+            <RegisterResultPage registerData={registerData} />
+          }
 
-      {
-        registerState === "input" ?
-        <RegisterInputPage updateRegisterData={updateRegisterData} updateRegisterState={updateRegisterState} /> :
-        <RegisterResultPage registerData={registerData} />
-      }
+        </div>
+      </div>
 
-    </div>
-    </div>
     </Grid>
+
   );
 }
