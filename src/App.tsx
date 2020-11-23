@@ -8,6 +8,7 @@ import {
 import Routes from "routing/Routes"
 import NavigationBar from "components/shared/NavigationBar"
 import { makeStyles } from '@material-ui/core/styles'
+import { Cookies } from "states/cookies"
 
 const useStyles = makeStyles((theme) => ({
   root: {

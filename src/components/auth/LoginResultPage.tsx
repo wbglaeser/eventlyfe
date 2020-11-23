@@ -56,6 +56,7 @@ export default function LoginResultPage(props: LoginResultProps) {
   const validateUser = async (loginData: LoginDataLayout) =>{
     const res = await fetch('http://localhost:8001/users/validate', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'text/plain',
         },

@@ -28,6 +28,7 @@ const sendAsyncReq = (eventDetails: EventDetailsLayout) =>{
   return new Promise((resolve, reject) =>{
     fetch('http://localhost:8001/events', {
       method: 'POST',
+      credentials: "same-origin",
       headers: {
         'Content-Type': 'text/plain',
       },

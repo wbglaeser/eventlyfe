@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
+import { Cookies } from "states/cookies"
 
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
@@ -48,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Events() {
   const classes = useStyles();
+  let cookies = Cookies.useContainer();
+  cookies.setCookie("name", "hi there", { path: "/"} )
 
   return (
     <Grid container className={classes.welcomeBox}>
