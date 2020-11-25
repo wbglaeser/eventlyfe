@@ -8,11 +8,15 @@ export function useAuthentification(initialState: Boolean = false) {
     setAuthentification(true)
   }
 
+  const logout = () => {
+    setAuthentification(false)
+  }
+
   const logged_in = (): Boolean => {
     if (self) { return true }
     else { return false }
   }
 
-  return { self, login, logged_in }
+  return { self, login, logout, logged_in }
 }
 export const Authentification = createContainer(useAuthentification)

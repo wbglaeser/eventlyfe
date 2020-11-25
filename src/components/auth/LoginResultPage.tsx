@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type LoginResultProps = {
-  loginData: LoginDataLayout
+  loginData: LoginDataLayout,
+  loginType: String
 }
 
 export default function LoginResultPage(props: LoginResultProps) {
@@ -53,8 +54,8 @@ export default function LoginResultPage(props: LoginResultProps) {
   let authentification = Authentification.useContainer();
 
 
-  const validateUser = async (loginData: LoginDataLayout) =>{
-    const res = await fetch('http://localhost:8001/users/validate', {
+  const validateUser = async (loginData: LoginDataLayout) => {
+    const res = await fetch('http://localhost:8001/users/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -72,6 +73,9 @@ export default function LoginResultPage(props: LoginResultProps) {
       validateUser(props.loginData)
   }, [])
 
+  console.log(props.loginType)
+  console.log(loginResult)
+
   return (
     <Grid container className={classes.welcomeBox}>
 
@@ -79,7 +83,13 @@ export default function LoginResultPage(props: LoginResultProps) {
         <div className={classes.welcomeBoxInfoText}>
         {
           loginResult?
-          <Redirect to={"/event/overview"}/>:
+          <>
+          {
+            props.loginType==="dashboard"?
+            <Redirect to={"/user/dashboard"}/>:
+            <Redirect to={"/event/overview"}/>
+          }
+          </>:
           <div className={classes.eventExplanation}>
             Your login was not successful.
           </div>

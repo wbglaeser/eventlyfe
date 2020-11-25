@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import LoginInputPage from "components/auth/LoginInputPage"
@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 let initialLoginData: LoginDataLayout = {};
 let initialLoginState: String = "input";
 
@@ -41,6 +40,7 @@ export default function Login() {
   const [loginData, setLoginData] = useState(initialLoginData)
   const [loginState, setLoginState] = useState(initialLoginState)
   const classes = useStyles();
+  let { type }: any = useParams()
 
   const updateLoginData = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
     let _loginData = {...loginData}
@@ -61,7 +61,7 @@ export default function Login() {
           {
             loginState === "input" ?
             <LoginInputPage updateLoginData={updateLoginData} updateLoginState={updateLoginState} /> :
-            <LoginResultPage loginData={loginData} />
+            <LoginResultPage loginData={loginData} loginType={type}/>
           }
 
         </div>

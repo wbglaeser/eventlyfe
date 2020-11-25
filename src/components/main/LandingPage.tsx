@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
+import { Authentification } from "states/authentification"
 
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
@@ -58,6 +59,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LandingPage() {
   const classes = useStyles();
+  let authentification = Authentification.useContainer();
+
+  const checkSession = async () => {
+    const res = await fetch('http://localhost:8001/users/validate_session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+      credentials: 'include',
+      body: JSON.stringify({}),
+    }).then((response) => response.json())
+    .then(response => {
+      authentification.login()
+    })
+  }
+
+  useEffect(() => {
+      checkSession()
+  }, [])
 
   return (
     <Grid container className={classes.welcomeBox}>

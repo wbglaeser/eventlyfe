@@ -24,44 +24,34 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const sendAsyncReq = (eventDetails: EventDetailsLayout) =>{
-  return new Promise((resolve, reject) =>{
-    fetch('http://localhost:8001/events', {
+export default function EventConfirmation() {
+  const classes = useStyles();
+  const [createResult, setCreateResult] = useState(false)
+  let eventDetails = EventDetails.useContainer();
+
+  const createEvent = async (eventDetails: EventDetailsLayout) => {
+    const res = await fetch('http://localhost:8001/events/', {
       method: 'POST',
-      credentials: "same-origin",
       headers: {
         'Content-Type': 'text/plain',
       },
+      credentials: 'include',
       body: JSON.stringify(eventDetails)
-    }).then(
-      (response) => {
-        response.json()
-          .then((res) => {
-            if (response.status === 201) { resolve(true) }
-            else { resolve(false) }
-          })
-      })
-      .catch((err) => {
-        // reject(err)
-      });
-  })
-}
+    }).then((response) => response.json())
+    .then(response => {
+      setCreateResult(response)
+    })
+  }
 
-const sendRequest = async (eventDetails: EventDetailsLayout) => {
-  const result = await sendAsyncReq(eventDetails)
-  console.log(result)
-}
-
-export default function EventConfirmation() {
-  const classes = useStyles();
-  let eventDetails = EventDetails.useContainer();
-  let result = sendRequest(eventDetails.self)
+  useEffect(() => {
+      createEvent(eventDetails.self)
+  }, [])
 
   return (
     <>
       <div className={classes.welcomeBoxInfoText}>
         {
-          result?
+          createResult?
           <>Your Event has been created successfully</>:
           <>Your Event could not be created</>
         }

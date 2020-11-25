@@ -106,7 +106,7 @@ export default function EventOverview() {
           <div className={classes.loginContainer}>
             To create the event you need to sign in first
             <Link
-              to={"/login"}
+              to={"/login/event"}
               className={classes.startButton}
               >
                 Login

@@ -1,14 +1,7 @@
 import React from 'react'
 import ReactDOM from "react-dom"
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from "react-router-dom"
-import Routes from "routing/Routes"
-import NavigationBar from "components/shared/NavigationBar"
 import { makeStyles } from '@material-ui/core/styles'
-import { Cookies } from "states/cookies"
+import EventStateInit from "states/EventStateInit"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,13 +27,7 @@ const App = () => {
 
   return (
     <div className={classes.root}>
-
-      <Router>
-        <div className={classes.navBar}>
-          <NavigationBar/>
-        </div>
-        <Routes />
-      </Router>
+      <EventStateInit />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import { makeStyles } from '@material-ui/core/styles'
 import { Link } from "react-router-dom"
+import { Authentification } from "states/authentification"
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavigationBar() {
   const classes = useStyles();
+  let authentification = Authentification.useContainer();
 
   return (
     <AppBar position="static" elevation={0} className={classes.appBar}>
@@ -47,9 +49,15 @@ export default function NavigationBar() {
           <h3 className={classes.text}>Contact</h3>
         </Link>
 
-        <Link to="/login" className={classes.linkStyle}>
-          <h3 className={classes.text}>Login</h3>
-        </Link>
+        {
+          authentification.logged_in()?
+          <Link to="/logout" className={classes.linkStyle}>
+            <h3 className={classes.text}>Logout</h3>
+          </Link>:
+          <Link to="/login/dashboard" className={classes.linkStyle}>
+            <h3 className={classes.text}>Login</h3>
+          </Link>
+        }
       </div>
 
     </AppBar>

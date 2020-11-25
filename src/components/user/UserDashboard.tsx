@@ -2,7 +2,6 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
-import { Cookies } from "states/cookies"
 
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
@@ -47,24 +46,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Events() {
+export default function UserDashboard() {
   const classes = useStyles();
-  let cookies = Cookies.useContainer();
 
   return (
     <Grid container className={classes.welcomeBox}>
-
       <div className={classes.eventBoxContainer}>
         <div className={classes.eventContent}>
-
-        <div className={classes.eventText}>
-          Over the next few steps you can setup your own event by answering a few
-          simple questions
-        </div>
-
-        <Link to={"/event/" + "name" }className={classes.startButton}>
-            Enter your Event Details
-        </Link>
+          <div className={classes.eventText}>
+            Your events:
+          </div>
         </div>
       </div>
 
