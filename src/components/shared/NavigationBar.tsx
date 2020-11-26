@@ -41,12 +41,15 @@ export default function NavigationBar() {
       </Link>
 
       <div className={classes.infoSection}>
+      {
+        authentification.logged_in()?
+        <Link to="/user/dashboard" className={classes.linkStyle}>
+          <h3 className={classes.text}>Your Events</h3>
+        </Link>:
+        null
+      }
         <Link to="/about" className={classes.linkStyle}>
           <h3 className={classes.text}>About us</h3>
-        </Link>
-
-        <Link to="/contact" className={classes.linkStyle}>
-          <h3 className={classes.text}>Contact</h3>
         </Link>
 
         {

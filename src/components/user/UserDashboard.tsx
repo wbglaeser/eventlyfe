@@ -31,18 +31,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '22px',
     fontFamily: "Arial",
     marginBottom: "50px"
-  },
-  startButton: {
-    width: "20vw",
-    minHeight: "5vh",
-    backgroundColor: "#4aa0ec",
-    fontSize: '28px',
-    fontFamily: "Arial",
-    color: "white",
-    textDecoration: 'none',
-    padding: "15px",
-    marginRight: "30px",
-    borderRadius: "5px",
   }
 }));
 

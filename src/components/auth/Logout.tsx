@@ -21,7 +21,7 @@ export default function Logout() {
 
   useEffect(() => {
       checkSession()
-  }, [])
+  })
 
   return (
     <LandingPage />
