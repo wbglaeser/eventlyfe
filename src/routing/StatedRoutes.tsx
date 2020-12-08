@@ -26,9 +26,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100vw",
     margin: theme.spacing(0),
     padding: theme.spacing(0),
+  },
+  appSpace: {
+    width: "640px",
   }
 }));
-
 
 const StatedRoutes = () => {
   const classes = useStyles();
@@ -37,51 +39,53 @@ const StatedRoutes = () => {
     <>
       <Router>
 
-      <div className={classes.navBar}>
-        <NavigationBar/>
-      </div>
+        <div className={classes.navBar}>
+          <NavigationBar/>
+        </div>
 
-        <Switch>
-          <Route exact path="/">
-              <LandingPage />
-          </Route>
+        <div className={classes.appSpace}>
+          <Switch>
+            <Route exact path="/">
+                <LandingPage />
+            </Route>
 
-          <Route exact path="/about">
-              <About />
-          </Route>
+            <Route exact path="/about">
+                <About />
+            </Route>
 
-          <Route exact path="/contact">
-              <Contact />
-          </Route>
+            <Route exact path="/contact">
+                <Contact />
+            </Route>
 
-          <Route exact path="/event">
-              <Events />
-          </Route>
+            <Route exact path="/event">
+                <Events />
+            </Route>
 
-          <Route exact path="/login/:type">
-              <Login />
-          </Route>
+            <Route exact path="/login/:type">
+                <Login />
+            </Route>
 
-          <Route exact path="/user/dashboard">
-              <UserDashboard />
-          </Route>
+            <Route exact path="/user/dashboard">
+                <UserDashboard />
+            </Route>
 
-          <Route exact path="/logout">
-              <Logout />
-          </Route>
+            <Route exact path="/logout">
+                <Logout />
+            </Route>
 
-          <Route exact path="/register">
-              <Register />
-          </Route>
+            <Route exact path="/register">
+                <Register />
+            </Route>
 
-          <Route exact path="/confirmation">
-              <EventConfirmation />
-          </Route>
+            <Route exact path="/confirmation">
+                <EventConfirmation />
+            </Route>
 
-          <Route path="/event/:step">
-              <EventQuestion />
-          </Route>
-        </Switch>
+            <Route path="/event/:step">
+                <EventQuestion />
+            </Route>
+          </Switch>
+        </div>
       </Router>
     </>
   );
