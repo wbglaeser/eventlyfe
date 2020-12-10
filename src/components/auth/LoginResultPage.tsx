@@ -8,38 +8,12 @@ import { Redirect } from 'react-router-dom';
 import { Authentification } from "states/authentification"
 
 const useStyles = makeStyles((theme) => ({
-  welcomeBox: {
-    display: "flex",
-    flexDirection: 'column',
-    alignItems: "flex-start",
-    height: "50vh",
-    marginTop: "3vh"
+  loginTitleContainer:{
+    margin: "32px"
   },
-  welcomeBoxStart: {
-    height: "100%",
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  welcomeBoxInfoText: {
-    color: "white",
-  },
-  linkStyle: {
-    textDecoration: 'none'
-  },
-  startButton: {
-    backgroundColor: "white",
-    padding: "2vh",
-    margin: "10vh",
-    fontSize: "28px",
-    fontFamily: "Arial Black",
-    color: "black",
-  },
-  eventExplanation: {
-    fontSize: "22px",
-    fontFamily: "Arial Black",
-    color: "black",
+  loginTitleText: {
+    fontSize: '28px',
+    fontFamily: "Arial"
   }
 }));
 
@@ -77,26 +51,22 @@ export default function LoginResultPage(props: LoginResultProps) {
   console.log(loginResult)
 
   return (
-    <Grid container className={classes.welcomeBox}>
-
-      <div className={classes.welcomeBoxStart}>
-        <div className={classes.welcomeBoxInfoText}>
+    <div>
+      {
+        loginResult?
+        <>
         {
-          loginResult?
-          <>
-          {
-            props.loginType==="dashboard"?
-            <Redirect to={"/user/dashboard"}/>:
-            <Redirect to={"/event/overview"}/>
-          }
-          </>:
-          <div className={classes.eventExplanation}>
-            Your login was not successful.
-          </div>
+          props.loginType==="dashboard"?
+          <Redirect to={"/user/dashboard"}/>:
+          <Redirect to={"/event/overview"}/>
         }
-
+        </>:
+        <div className={classes.loginTitleContainer}>
+          <span className={classes.loginTitleText}>
+            Your login was not successful
+          </span>
         </div>
-      </div>
-    </Grid>
+      }
+    </div>
   );
 }

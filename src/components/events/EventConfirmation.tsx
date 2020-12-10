@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom"
 import { EventDetailsLayout } from "customTypes"
 
 import { EventDetails } from "states/eventDetails"
 
 const useStyles = makeStyles((theme) => ({
-  welcomeBoxInfoText: {
-    fontSize: "28px",
-    fontFamily: "Arial Black",
-    color: "black",
+  welcomeBox: {
+    display: "flex",
+    flexDirection: 'column',
+    justifyContent: "flex-start",
+    marginTop: "32px",
+    minHeight: "256px",
+    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
   },
-  linkStyle: {
-    textDecoration: 'none'
+  eventConfirmationTitleContainer: {
+    margin: "32px"
   },
-  startButton: {
-    backgroundColor: "white",
-    padding: "2vh",
-    margin: "10vh",
-    fontSize: "28px",
-    fontFamily: "Arial Black",
+  eventConfirmationTitleText: {
+    fontSize: '22px',
+    fontFamily: "Arial",
     color: "black",
   }
 }));
@@ -48,16 +49,17 @@ export default function EventConfirmation() {
   }, [])
 
   return (
-    <>
-      <div className={classes.welcomeBoxInfoText}>
+    <Grid container className={classes.welcomeBox}>
         {
           createResult?
-          <>Your Event has been created successfully</>:
-          <>Your Event could not be created</>
+          <div className={classes.eventConfirmationTitleContainer}>
+            <span className={classes.eventConfirmationTitleText}>Your Event has been created successfully</span>
+          </div>
+          :
+          <div className={classes.eventConfirmationTitleContainer}>
+            <span className={classes.eventConfirmationTitleText}>Your Event could not be created</span>
+          </div>
         }
-
-      </div>
-
-    </>
+    </Grid>
   );
 }

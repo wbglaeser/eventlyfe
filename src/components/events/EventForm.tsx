@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({
   welcomeBox: {
     display: "flex",
     flexDirection: 'column',
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     marginTop: "32px",
-    minHeight: "640px",
+    minHeight: "256px",
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
   },
   eventFormTitleContainer: {
@@ -63,30 +63,30 @@ export default function EventForm(props: EventFormProps) {
   return (
     <Grid container className={classes.welcomeBox}>
 
-        <div className={classes.eventFormTitleContainer}>
-          <span className={classes.eventFormTitleText}>{stepDetails.question}</span>
-        </div>
+      <div className={classes.eventFormTitleContainer}>
+        <span className={classes.eventFormTitleText}>{stepDetails.question}</span>
+      </div>
 
-        <div className={classes.textInputContainer}>
-          <TextField
-            key={props.step}
-            id="standard-full-width"
-            style={{ margin: 8 }}
-            placeholder={stepDetails.placeholder}
-            fullWidth
-            margin="normal"
-            onChange={updateTextInput}
-          />
-        </div>
+      <div className={classes.textInputContainer}>
+        <TextField
+          key={props.step}
+          id="standard-full-width"
+          style={{ margin: 8 }}
+          placeholder={stepDetails.placeholder}
+          fullWidth
+          margin="normal"
+          onChange={updateTextInput}
+        />
+      </div>
 
-        <Link
-          to={"/event/" + stepDetails.nextStep}
-          className={classes.nextButtonContainer}
-          onClick={() => {eventDetails.addDetail(props.step, textInput)}}
-        >
+      <Link
+        to={"/event/" + stepDetails.nextStep}
+        className={classes.nextButtonContainer}
+        onClick={() => {eventDetails.addDetail(props.step, textInput)}}
+      >
         <span className={classes.nextButtonText}>
           Next
-        </span>
+          </span>
       </Link>
 
     </Grid>

@@ -8,9 +8,9 @@ const useStyles = makeStyles((theme) => ({
   welcomeBox: {
     display: "flex",
     flexDirection: 'column',
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     marginTop: "32px",
-    minHeight: "640px",
+    minHeight: "256px",
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
   },
   landingHeaderContainer: {

@@ -10,9 +10,9 @@ const useStyles = makeStyles((theme) => ({
   welcomeBox: {
     display: "flex",
     flexDirection: 'column',
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     marginTop: "32px",
-    minHeight: "640px",
+    minHeight: "256px",
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
   },
   eventOverviewTitleContainer: {
@@ -70,11 +70,18 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Arial"
   },
   eventOverviewButtonContainer: {
-    margin: "32px 32px 0px 32px"
-  },
-  eventOverviewListContainer: {
     margin: "0px 32px 0px 32px"
   },
+  eventListItem: {
+    margin: "0px 32px 0px 32px"
+  },
+  listItemText: {
+    fontSize: '22px',
+    fontFamily: "Arial",
+  },
+  eventOverviewListContainer: {
+    marginBottom: "32px"
+  }
 }));
 
 export default function EventOverview() {
@@ -98,14 +105,15 @@ export default function EventOverview() {
           </span>
         </div>
 
-
+        <div className={classes.eventOverviewListContainer}>
           {Object.entries(eventDetails.self).map((label, index) => {
             return(
-              <div className={classes.eventOverviewListContainer}>
-                <span key={index}>{label[0]}: {label[1]}</span>
+              <div className={classes.eventListItem}>
+                <span className={classes.listItemText} key={index}>{label[0]}: {label[1]}</span>
               </div>
             )
           })}
+        </div>
         {
           authentification.logged_in()?
           <>

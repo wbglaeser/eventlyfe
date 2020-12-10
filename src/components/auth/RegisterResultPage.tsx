@@ -8,39 +8,13 @@ import { Redirect } from 'react-router-dom';
 import { Authentification } from "states/authentification"
 
 const useStyles = makeStyles((theme) => ({
-  welcomeBox: {
-    display: "flex",
-    flexDirection: 'column',
-    alignItems: "flex-start",
-    height: "50vh",
-    marginTop: "3vh"
+  registerTitleContainer:{
+    margin: "32px"
   },
-  welcomeBoxStart: {
-    height: "100%",
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
+  registerTitleText: {
+    fontSize: '28px',
+    fontFamily: "Arial"
   },
-  welcomeBoxInfoText: {
-    color: "white",
-  },
-  linkStyle: {
-    textDecoration: 'none'
-  },
-  startButton: {
-    backgroundColor: "white",
-    padding: "2vh",
-    margin: "10vh",
-    fontSize: "28px",
-    fontFamily: "Arial Black",
-    color: "black",
-  },
-  eventExplanation: {
-    fontSize: "22px",
-    fontFamily: "Arial Black",
-    color: "black",
-  }
 }));
 
 type RegisterResultProps = {
@@ -73,19 +47,16 @@ export default function RegisterResultPage(props: RegisterResultProps) {
   }, [])
 
   return (
-    <Grid container className={classes.welcomeBox}>
-
-      <div className={classes.welcomeBoxStart}>
-        <div className={classes.welcomeBoxInfoText}>
-        {
-          registerResult?
-          <Redirect to={"/event/overview"}/>:
-          <div className={classes.eventExplanation}>
-            Your register was not successful.
-          </div>
-        }
+    <div>
+      {
+        registerResult?
+        <Redirect to={"/event/overview"}/>:
+        <div className={classes.registerTitleContainer}>
+          <span className={classes.registerTitleText}>
+            Your register was not successful
+          </span>
         </div>
-      </div>
-    </Grid>
+      }
+    </div>
   );
 }

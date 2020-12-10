@@ -6,21 +6,30 @@ import TextField from '@material-ui/core/TextField';
 import { RegisterDataLayout } from "customTypes"
 
 const useStyles = makeStyles((theme) => ({
-  eventTitle:{
+  registerTitleContainer:{
+    margin: "32px"
+  },
+  registerTitleText: {
+    fontSize: '28px',
+    fontFamily: "Arial"
+  },
+  registerInputContainer: {
+    margin: "32px"
+  },
+  registerButtonContainer:{
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "black",
+    textDecoration: 'none',
+    margin: "0px 32px 32px 32px",
+    padding: "16px",
+    border: "solid 0px"
+  },
+  registerButtonText: {
     fontSize: '28px',
     fontFamily: "Arial",
-    marginBottom: "25px"
-  },
-  startButton: {
-    minHeight: "3vh",
-    backgroundColor: "#4aa0ec",
-    fontSize: '22px',
-    fontFamily: "Arial",
-    color: "white",
-    textDecoration: 'none',
-    padding: "10px",
-    marginRight: "30px",
-    borderRadius: "5px",
+    color: "white"
   }
 }));
 
@@ -33,37 +42,44 @@ export default function RegisterInputPage(props: RegisterResultProps) {
   const classes = useStyles();
 
   return (
-    <>
-      <div className={classes.eventTitle}>
-        Enter your register data
+    <div>
+      <div className={classes.registerTitleContainer}>
+        <span className={classes.registerTitleText}>
+          Enter your registration data
+        </span>
       </div>
 
-      <TextField
-        key={1}
-        id="standard-full-width"
-        style={{ margin: 8 }}
-        placeholder={"Username"}
-        fullWidth
-        margin="normal"
-        name="name"
-        onChange={props.updateRegisterData}
-      />
-
-      <TextField
-        key={2}
-        id="standard-full-width"
-        style={{ margin: 8 }}
-        placeholder={"Password"}
-        fullWidth
-        name="password"
-        margin="normal"
-        onChange={props.updateRegisterData}
-      />
-
-      <div className={classes.startButton}
-      onClick={() => { props.updateRegisterState()} }>
-        Register
+      <div className={classes.registerInputContainer}>
+        <TextField
+          key={1}
+          id="standard-full-width"
+          style={{ margin: 8 }}
+          placeholder={"Username"}
+          fullWidth
+          margin="normal"
+          name="name"
+          onChange={props.updateRegisterData}
+        />
       </div>
-    </>
+
+      <div className={classes.registerInputContainer}>
+        <TextField
+          key={2}
+          id="standard-full-width"
+          style={{ margin: 8 }}
+          placeholder={"Password"}
+          fullWidth
+          name="password"
+          margin="normal"
+          onChange={props.updateRegisterData}
+        />
+      </div>
+
+      <div className={classes.registerButtonContainer}
+        onClick={() => { props.updateRegisterState()} }>
+        <span className={classes.registerButtonText}>Register</span>
+      </div>
+
+    </div>
   );
 }
