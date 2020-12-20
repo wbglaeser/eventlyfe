@@ -65,7 +65,7 @@ const StatedRoutes = () => {
                 <Login />
             </Route>
 
-            <Route exact path="/user/dashboard">
+            <Route exact path="/dashboard">
                 <UserDashboard />
             </Route>
 

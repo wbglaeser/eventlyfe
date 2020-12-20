@@ -94,7 +94,7 @@ export default function EventForm() {
       .then(response => response.json())
       .then(response => {
         console.log("hi there")
-        history.push("/user/dashboard")
+        history.push("/dashboard")
       })
   }
 

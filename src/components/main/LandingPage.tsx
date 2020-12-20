@@ -41,22 +41,16 @@ export default function LandingPage() {
   const classes = useStyles();
   let authentification = Authentification.useContainer();
 
-  const checkSession = async () => {
-    const res = await fetch('http://localhost:8001/users/validate_session', {
+  const validateToken = async () => {
+    const res = await fetch('http://localhost:8001/validate', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain',
-      },
       credentials: 'include',
-      body: JSON.stringify({}),
     }).then((response) => response.json())
-    .then(response => {
-      authentification.login()
-    })
+    .then(response => {authentification.login()})
   }
 
   useEffect(() => {
-      checkSession()
+    validateToken()
   }, [])
 
   return (

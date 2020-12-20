@@ -43,7 +43,7 @@ export default function NavigationBar() {
       <div className={classes.infoSection}>
       {
         authentification.logged_in()?
-        <Link to="/user/dashboard" className={classes.linkStyle}>
+        <Link to="/dashboard" className={classes.linkStyle}>
           <h3 className={classes.text}>Your Events</h3>
         </Link>:
         null
@@ -57,7 +57,7 @@ export default function NavigationBar() {
           <Link to="/logout" className={classes.linkStyle}>
             <h3 className={classes.text}>Logout</h3>
           </Link>:
-          <Link to="/login/dashboard" className={classes.linkStyle}>
+          <Link to="/login/" className={classes.linkStyle}>
             <h3 className={classes.text}>Login</h3>
           </Link>
         }

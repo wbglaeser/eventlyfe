@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { LoginDataLayout } from "customTypes"
 import history from 'routing/RouteHistory';
+import { Authentification } from "states/authentification"
 
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
+  let authentification = Authentification.useContainer();
   const [emailInput, setEmailInput] = useState<string | null>(null)
   const [passwordInput, setPasswordInput] = useState<string | null>(null)
 
@@ -62,8 +64,8 @@ export default function Login() {
       })
       .then(response => response.json())
       .then(response => {
-        console.log("hi there")
-        history.push("/event/input")
+        authentification.login()
+        history.push("/dashboard")
       })
   }
 
