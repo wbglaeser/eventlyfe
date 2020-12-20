@@ -3,9 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import RegisterInputPage from "components/auth/RegisterInputPage"
-import RegisterResultPage from "components/auth/RegisterResultPage"
 import { RegisterDataLayout } from "customTypes"
+import history from 'routing/RouteHistory';
 
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
@@ -13,37 +12,83 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: "flex-start",
     marginTop: "32px",
+    marginBottom: "32px",
+    padding: "32px",
     minHeight: "256px",
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+  },
+  registerFormTitleText: {
+    fontSize: '28px',
+    fontFamily: "Arial",
+    color: "black",
+  },
+  formBox: {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: "32px",
+    marginTop: "32px"
   }
 }));
 
-let initialRegisterData: RegisterDataLayout = {};
 let initialRegisterState: String = "input";
 
 export default function Register() {
-  const [registerData, setRegisterData] = useState(initialRegisterData)
-  const [registerState, setRegisterState] = useState(initialRegisterState)
   const classes = useStyles();
+  const [nameInput, setNameInput] = useState(null)
+  const [emailInput, setEmailInput] = useState(null)
+  const [passwordInput, setPasswordInput] = useState(null)
 
-  const updateRegisterData = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
-    let _registerData = {...registerData}
-    _registerData[event.currentTarget.name] = event.currentTarget.value
-    setRegisterData(_registerData)
+  const updateNameInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    setNameInput(event.currentTarget.value)
+  }
+  const updateEmailInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    setEmailInput(event.currentTarget.value)
+  }
+  const updatePasswordInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    setPasswordInput(event.currentTarget.value)
   }
 
-  const updateRegisterState = () => {
-    setRegisterState("result")
+  const handleSubmit = (event: React.SyntheticEvent<EventTarget>) => {
+    event.preventDefault();
+    let registerData = {
+      name: nameInput,
+      email: emailInput,
+      password: passwordInput
+    };
+    registerUser(registerData)
+  }
+
+  const registerUser = async (registerData: RegisterDataLayout) => {
+    const res = await fetch('http://localhost:8001/register', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'text/plain',
+          },
+          body: JSON.stringify(registerData)
+      })
+      .then(response => response.json())
+      .then(response => {
+        console.log("hi there")
+        history.push("/user/dashboard")
+      })
   }
 
   return (
     <Grid container className={classes.welcomeBox}>
 
-          {
-            registerState === "input" ?
-            <RegisterInputPage updateRegisterData={updateRegisterData} updateRegisterState={updateRegisterState} /> :
-            <RegisterResultPage registerData={registerData} />
-          }
+      <div>
+        <span className={classes.registerFormTitleText}>Enter your register details</span>
+      </div>
+
+      <form onSubmit={handleSubmit} noValidate autoComplete="off">
+        <div className={classes.formBox}>
+          <TextField id="standard-basic0" label="name" name="name" onChange={updateNameInput}/>
+          <TextField id="standard-basic1" label="email" name="email" onChange={updateEmailInput}/>
+          <TextField id="standard-basic2" label="password" name="password" onChange={updatePasswordInput}/>
+        </div>
+        <button type="submit">Register</button>
+      </form>
 
     </Grid>
 

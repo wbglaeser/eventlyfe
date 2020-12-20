@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from "react-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
   Switch
 } from "react-router-dom"
@@ -13,10 +13,10 @@ import Events from "components/events/Events"
 import EventConfirmation from "components/events/EventConfirmation"
 import EventQuestion from "components/events/EventQuestion"
 import Login from "components/auth/Login"
-import Logout from "components/auth/Logout"
 import Register from "components/auth/Register"
 import NavigationBar from "components/shared/NavigationBar"
 import UserDashboard from "components/user/UserDashboard"
+import history from 'routing/RouteHistory'
 
 const useStyles = makeStyles((theme) => ({
   navBar: {
@@ -37,7 +37,7 @@ const StatedRoutes = () => {
 
   return (
     <>
-      <Router>
+      <Router history={history}>
 
         <div className={classes.navBar}>
           <NavigationBar/>
@@ -61,16 +61,12 @@ const StatedRoutes = () => {
                 <Events />
             </Route>
 
-            <Route exact path="/login/:type">
+            <Route exact path="/login/">
                 <Login />
             </Route>
 
             <Route exact path="/user/dashboard">
                 <UserDashboard />
-            </Route>
-
-            <Route exact path="/logout">
-                <Logout />
             </Route>
 
             <Route exact path="/register">
@@ -81,7 +77,7 @@ const StatedRoutes = () => {
                 <EventConfirmation />
             </Route>
 
-            <Route path="/event/:step">
+            <Route path="/event/input">
                 <EventQuestion />
             </Route>
           </Switch>

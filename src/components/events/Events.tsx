@@ -50,7 +50,7 @@ export default function Events() {
           </span>
         </div>
 
-        <Link to={"/event/" + "name" }className={classes.startButton}>
+        <Link to={ "/event/input" }className={classes.startButton}>
           <span className={classes.startButtonText}>
             Enter your Event Details
           </span>

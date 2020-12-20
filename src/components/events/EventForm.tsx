@@ -5,6 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 var path = require('path');
 import { retrieveEventDetailById } from "data/Interface"
+import FormControl from '@material-ui/core/FormControl';
+import { EventDetailsLayout } from "customTypes"
+import history from 'routing/RouteHistory';
 
 import { EventDetails } from "states/eventDetails"
 
@@ -14,11 +17,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: "flex-start",
     marginTop: "32px",
+    marginBottom: "32px",
+    padding: "32px",
     minHeight: "256px",
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
   },
   eventFormTitleContainer: {
-    margin: "32px"
   },
   eventFormTitleText: {
     fontSize: '28px',
@@ -41,53 +45,74 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '28px',
     fontFamily: "Arial",
     color: "white"
+  },
+  formBox: {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: "32px",
+    marginTop: "32px"
   }
 }));
 
-type EventFormProps = {
-  step: string
-}
-
 let initialTextInput: string = ""
 
-export default function EventForm(props: EventFormProps) {
-  const [textInput, setTextInput] = useState(initialTextInput)
+export default function EventForm() {
   const classes = useStyles();
-  const stepDetails = retrieveEventDetailById(props.step)
-  let eventDetails = EventDetails.useContainer();
+  const [eventName, setEventName] = useState<string | null>(null)
+  const [eventLocation, setEventLocation] = useState<string | null>(null)
+  const [eventDate, setEventDate] = useState<string | null>(null)
 
-  const updateTextInput = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
-    setTextInput(event.currentTarget.value)
+  const updateEventName = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    setEventName(event.currentTarget.value)
+  }
+  const updateEventLocation = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    setEventLocation(event.currentTarget.value)
+  }
+  const updateEventDate = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+    setEventDate(event.currentTarget.value)
+  }
+
+  const handleSubmit = (event: React.SyntheticEvent<EventTarget>) => {
+    event.preventDefault();
+    let eventData = {
+      name: eventName,
+      date: eventDate,
+      location: eventLocation,
+    };
+    registerEvent(eventData)
+  }
+
+  const registerEvent = async (registerData: EventDetailsLayout) => {
+    const res = await fetch('http://localhost:8002/', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'text/plain',
+          },
+          body: JSON.stringify(registerData)
+      })
+      .then(response => response.json())
+      .then(response => {
+        console.log("hi there")
+        history.push("/user/dashboard")
+      })
   }
 
   return (
     <Grid container className={classes.welcomeBox}>
 
       <div className={classes.eventFormTitleContainer}>
-        <span className={classes.eventFormTitleText}>{stepDetails.question}</span>
+        <span className={classes.eventFormTitleText}>Enter the details of your event</span>
       </div>
 
-      <div className={classes.textInputContainer}>
-        <TextField
-          key={props.step}
-          id="standard-full-width"
-          style={{ margin: 8 }}
-          placeholder={stepDetails.placeholder}
-          fullWidth
-          margin="normal"
-          onChange={updateTextInput}
-        />
-      </div>
-
-      <Link
-        to={"/event/" + stepDetails.nextStep}
-        className={classes.nextButtonContainer}
-        onClick={() => {eventDetails.addDetail(props.step, textInput)}}
-      >
-        <span className={classes.nextButtonText}>
-          Next
-          </span>
-      </Link>
+      <form onSubmit={handleSubmit} noValidate autoComplete="off">
+        <div className={classes.formBox}>
+          <TextField id="standard-basic" label="Name" onChange={updateEventName}/>
+          <TextField id="standard-basic2" label="Location" onChange={updateEventLocation} />
+          <TextField id="standard-basic3" label="Date" onChange={updateEventDate} />
+        </div>
+        <button type="submit">Create your Event</button>
+      </form>
 
     </Grid>
 

@@ -12,7 +12,7 @@ export default function EventQuestion() {
     <>
       {
         (step !== "overview")?
-        <EventForm step={step}/>:
+        <EventForm />:
         <EventOverview />
       }
     </>
