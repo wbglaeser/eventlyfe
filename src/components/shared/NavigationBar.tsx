@@ -33,6 +33,16 @@ export default function NavigationBar() {
   const classes = useStyles();
   let authentification = Authentification.useContainer();
 
+  const logoutUser = async () => {
+    authentification.logout();
+    const res = await fetch('http://localhost:8001/logout', {
+          method: 'POST',
+          credentials: 'include',
+      })
+      .then(response => response.json())
+      .then(response => {})
+  }
+
   return (
     <AppBar position="static" elevation={0} className={classes.appBar}>
 
@@ -54,10 +64,10 @@ export default function NavigationBar() {
 
         {
           authentification.logged_in()?
-          <Link to="/logout" className={classes.linkStyle}>
+          <Link to="/" onClick={() => logoutUser()} className={classes.linkStyle}>
             <h3 className={classes.text}>Logout</h3>
           </Link>:
-          <Link to="/login/" className={classes.linkStyle}>
+          <Link to="/login" className={classes.linkStyle}>
             <h3 className={classes.text}>Login</h3>
           </Link>
         }

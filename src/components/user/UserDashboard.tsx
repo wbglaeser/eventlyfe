@@ -87,7 +87,11 @@ export default function UserDashboard() {
         null
       }
 
-
+      <Link to={ "/event/input" }>
+        <p>
+          Create a new event.
+        </p>
+      </Link>
 
     </Grid>
   );

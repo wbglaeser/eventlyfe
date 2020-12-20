@@ -46,12 +46,14 @@ export default function LandingPage() {
       method: 'POST',
       credentials: 'include',
     }).then((response) => response.json())
-    .then(response => {authentification.login()})
+    .then(response => {
+      if (response) {authentification.login()}
+    })
   }
 
   useEffect(() => {
     validateToken()
-  }, [])
+  }, [authentification])
 
   return (
     <Grid container className={classes.welcomeBox}>

@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles';
 import { Cookies } from "states/cookies"
+import { Authentification } from "states/authentification"
 
 const useStyles = makeStyles((theme) => ({
   welcomeBox: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '28px',
     fontFamily: "Arial",
     color: "black",
+    padding: 0
   },
   startButton: {
     display: "flex",
@@ -40,21 +42,32 @@ const useStyles = makeStyles((theme) => ({
 export default function Events() {
   const classes = useStyles();
   let cookies = Cookies.useContainer();
+  let authentification = Authentification.useContainer();
 
   return (
     <Grid container className={classes.welcomeBox}>
 
         <div className={classes.eventHeaderContainer}>
-          <span className={classes.eventHeaderText}>
+          <p className={classes.eventHeaderText}>
             Over the next few steps you can setup your own event by answering a few simple questions
-          </span>
+          </p>
         </div>
 
-        <Link to={ "/event/input" }className={classes.startButton}>
-          <span className={classes.startButtonText}>
-            Enter your Event Details
-          </span>
-        </Link>
+        {
+          authentification.logged_in()?
+          <Link to={ "/event/input" }className={classes.startButton}>
+            <p className={classes.startButtonText}>
+              Enter your details.
+            </p>
+          </Link>:
+          <Link to={ "/register" }className={classes.startButton}>
+            <p className={classes.startButtonText}>
+              You need to register an account to proceed.
+            </p>
+          </Link>
+        }
+
+
 
     </Grid>
   );

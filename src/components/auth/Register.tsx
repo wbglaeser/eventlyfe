@@ -90,6 +90,12 @@ export default function Register() {
         <button type="submit">Register</button>
       </form>
 
+      <Link to={ "/login" }>
+        <p>
+          Already have an account.
+        </p>
+      </Link>
+
     </Grid>
 
   );

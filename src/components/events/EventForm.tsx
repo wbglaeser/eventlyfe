@@ -93,7 +93,6 @@ export default function EventForm() {
       })
       .then(response => response.json())
       .then(response => {
-        console.log("hi there")
         history.push("/dashboard")
       })
   }
